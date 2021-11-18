@@ -1,6 +1,6 @@
-Star[] starArray = new Star[200];
+Star[] starArray = new Star[500];
 Spaceship bob = new Spaceship();
-Particle[] lines = new Particle[150];
+Particle[] lines = new Particle[500];
 
 //your variable declarations here
 public void setup() 
@@ -26,32 +26,49 @@ public void draw()
   bob.show();
   bob.move();
   //your code here
+  if(keyPressed){
+    if(key == 'w'){
+      background(0);
+      
+      for(int i = 0; i < lines.length; i++){
+        //lines[i] = new Particle();
+        lines[i].moves();
+        lines[i].reset();
+        lines[i].show();
+        //lines[i].reset();
+      }
+      bob.hyperspace();
+      bob.stopMoving();
+    }
+  }
 }
 
 //char aChar = 'a';
 public void keyPressed(){
   if(key == ' '){
-    bob.accelerate(5);
+    bob.accelerate(2);
     bob.move();
   }
-  if(keyCode == 'A'){
+  if(key == 'a'){
     bob.turn(-10);
   }
-  if(keyCode == 'D'){
+  if(key == 'd'){
     bob.turn(10);
   }
-if(keyCode == 'W'){
-  background(0);
-  for(int i = 0; i < lines.length; i++){
-    lines[i].moves();
-    lines[i].show();
+  if(key == 'z'){
+    bob.accelerate(-2);
   }
-    bob.hyperspace();
-    bob.stopMoving();
-  }
+  //if(keyCode == 'W'){
+  ////background(0);
+  ////for(int i = 0; i < lines.length; i++){
+  ////  lines[i].moves();
+  ////  lines[i].show();
+  ////}
+  //  bob.hyperspace();
+  //  bob.stopMoving();
+  //}
 
   //if(keyEvent == aChar){
   //  background(240);
   //}
 }
-
