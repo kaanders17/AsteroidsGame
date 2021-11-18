@@ -1,7 +1,7 @@
 class Particle{
-  float myX, myY, mySize;
-  double myAngle, mySpeed;
-  int myColor;
+  private float myX, myY, mySize;
+  private double myAngle, mySpeed;
+  private int myColor;
   Particle(){
     myX = 320;
     myY = 240;
@@ -15,7 +15,7 @@ class Particle{
     fill(myColor);
     float size = (float)mySize * dist(320, 240, myX, myY)/60;
     //ellipse((float)myX, (float)myY, size, size);
-    rect((float)myX, (float)myY, size, size);
+    rect((float)myX, (float)myY, size, size*10);
   }
   void moves(){
     myX = myX + (float)(Math.cos(myAngle) * mySpeed);
