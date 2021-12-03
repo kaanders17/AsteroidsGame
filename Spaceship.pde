@@ -26,6 +26,11 @@ public void hyperspace(){
     myXspeed = 0;
     myYspeed = 0;
   }//your code here
-
+  public double getMyX(){
+    return myCenterX;
+  }
+  public double getMyY(){
+    return myCenterY;
+  }
     //your code here
 }
