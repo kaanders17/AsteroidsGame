@@ -52,5 +52,11 @@ public void hyperspace(){
   public double getPointDirection(){
     return myPointDirection;
   }
+  public double getMyXSpeed(){
+    return myXspeed;
+  }
+  public double getMyYSpeed(){
+    return myYspeed;
+  }
     //your code here
 }
