@@ -1,5 +1,5 @@
 Star[] starArray = new Star[500];
-Spaceship bob = new Spaceship();
+Spaceship[] bob = new Spaceship[3];
 Particle[] lines = new Particle[500];
 ArrayList <Asteroid> marco = new ArrayList <Asteroid>();
 ArrayList <SmallAsteroid> polo = new ArrayList <SmallAsteroid>();
@@ -12,6 +12,9 @@ public void setup()
   for(int i = 0; i < starArray.length; i++){
     starArray[i] = new Star();
   }
+  bob[0] = new Spaceship(250, 250);
+  bob[1] = new Spaceship(200, 200);
+  bob[2] = new Spaceship(200, 300);
   for(int i = 0; i < lines.length; i++){
     lines[i] = new Particle();
   }
@@ -38,22 +41,27 @@ public void draw()
   for(int i = 0; i < starArray.length; i++){
     starArray[i].show();
   }
-  bob.show();
-  bob.move();
-  //collisions
-  for(int k = 0; k < marco.size(); k++){
-    if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(bob.getMyX()), (float)(bob.getMyY())) < 20){
-      polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() + 20, marco.get(k).getMyCenterX() + 20));
-      polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() - 20, marco.get(k).getMyCenterX() - 20));
-      marco.remove(k);
-      k--;
-    }   
+  for(int i = 0; i < bob.length; i++){
+    bob[i].show();
+    bob[i].move();
   }
-  for(int k = 0; k < polo.size(); k++){
-    if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(bob.getMyX()), (float)(bob.getMyY())) < 10){
-      polo.remove(k);
-      k--;
-    }   
+  
+  //collisions
+  for(int i = 0; i < bob.length; i++){
+    for(int k = 0; k < marco.size(); k++){
+      if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(bob[i].getMyX()), (float)(bob[i].getMyY())) < 20){
+        polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() + 20, marco.get(k).getMyCenterX() + 20));
+        polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() - 20, marco.get(k).getMyCenterX() - 20));
+        marco.remove(k);
+        k--;
+      }   
+    }
+    for(int k = 0; k < polo.size(); k++){
+      if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(bob[i].getMyX()), (float)(bob[i].getMyY())) < 10){
+        polo.remove(k);
+        k--;
+      }   
+    }
   }
   
   //your code here
@@ -68,8 +76,12 @@ public void draw()
         lines[i].show();
         //lines[i].reset();
       }
-      bob.hyperspace();
-      bob.stopMoving();
+      for(int i = 0; i < bob.length; i++){
+        bob[i].stopMoving();
+      }
+      bob[0].hyperspace();
+      bob[1] = new Spaceship(bob[0].getMyX() - 50, bob[0].getMyY() - 50, bob[0].getPointDirection());
+      bob[2] = new Spaceship(bob[0].getMyX() - 50, bob[0].getMyY() + 50, bob[0].getPointDirection());
       for(int i = 0; i < 1; i++){
         marco.add(new Asteroid());
       }
@@ -80,17 +92,25 @@ public void draw()
 //char aChar = 'a';
 public void keyPressed(){
   if(key == ' '){
-    bob.accelerate(2);
-    bob.move();
+    for(int i = 0; i < bob.length; i++){
+      bob[i].accelerate(2);
+      bob[i].move();
+    }
   }
   if(key == 'a'){
-    bob.turn(-10);
+    for(int i = 0; i < bob.length; i++){
+      bob[i].turn(-10);
+    }
   }
   if(key == 'd'){
-    bob.turn(10);
+    for(int i = 0; i < bob.length; i++){
+      bob[i].turn(10);
+    }
   }
   if(key == 'z'){
-    bob.accelerate(-2);
+    for(int i = 0; i < bob.length; i++){
+      bob[i].accelerate(-2);
+    }
   }
   //if(keyCode == 'W'){
   ////background(0);
