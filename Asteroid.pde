@@ -1,5 +1,5 @@
 class Asteroid extends Floater{
-  private int rotationSpeed;
+  protected int rotationSpeed;
   Asteroid(){
     corners = 8;
     xCorners = new int[corners];   
@@ -21,7 +21,6 @@ class Asteroid extends Floater{
     xCorners[7] = (int)(Math.random()*3) - 12;
     yCorners[7] = (int)(Math.random()*3) - 1;
     
-    
     //xCorners[0] = (int)(Math.random()*5) - 13;
     //yCorners[0] = (int)(Math.random()*5) - 10;
     //xCorners[1] = (int)(Math.random()*5) - 2;
@@ -38,7 +37,6 @@ class Asteroid extends Floater{
     //yCorners[6] = (int)(Math.random()*5) + 6;
     //xCorners[7] = (int)(Math.random()*5) - 13;
     //yCorners[7] = (int)(Math.random()*5) - 2;
-    
     myColor = 255;   
     myCenterX = (int)(Math.random()*480) + 10;
     myCenterY = (int)(Math.random()*480) + 10; 
@@ -84,4 +82,30 @@ class Asteroid extends Floater{
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
   }   
+}
+
+
+class SmallAsteroid extends Asteroid{
+  SmallAsteroid(double a, double b){
+    corners = 5;
+    xCorners = new int[corners];   
+    yCorners = new int[corners]; 
+    xCorners[0] = (int)(Math.random()*3) - 6;
+    yCorners[0] = (int)(Math.random()*3) - 5;
+    xCorners[1] = (int)(Math.random()*3) + 3;
+    yCorners[1] = (int)(Math.random()*3) - 5;
+    xCorners[2] = (int)(Math.random()*3) + 4;
+    yCorners[2] = (int)(Math.random()*3) + 3;
+    xCorners[3] = (int)(Math.random()*3) - 1;
+    yCorners[3] = (int)(Math.random()*3) + 4;
+    xCorners[4] = (int)(Math.random()*3) - 6;
+    yCorners[4] = (int)(Math.random()*3) + 3;
+    myColor = 255;   
+    myCenterX = a;
+    myCenterY = b; 
+    myXspeed = (Math.random()*2); 
+    myYspeed = (Math.random()*2); //holds the speed of travel in the x and y directions   
+    myPointDirection = (int)(Math.random() * 360);
+    rotationSpeed = (int)(Math.random()*20) - 10;
+  }
 }
