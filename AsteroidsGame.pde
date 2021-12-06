@@ -2,6 +2,7 @@ Star[] starArray = new Star[500];
 Spaceship bob = new Spaceship();
 Particle[] lines = new Particle[500];
 ArrayList <Asteroid> marco = new ArrayList <Asteroid>();
+ArrayList <SmallAsteroid> polo = new ArrayList <SmallAsteroid>();
 
 //your variable declarations here
 public void setup() 
@@ -29,6 +30,11 @@ public void draw()
     (marco.get(i)).move();
   }
   
+  for(int i = 0; i < polo.size(); i++){
+    (polo.get(i)).show();
+    (polo.get(i)).move();
+  }
+  
   for(int i = 0; i < starArray.length; i++){
     starArray[i].show();
   }
@@ -37,7 +43,15 @@ public void draw()
   //collisions
   for(int k = 0; k < marco.size(); k++){
     if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(bob.getMyX()), (float)(bob.getMyY())) < 20){
+      polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() + 20, marco.get(k).getMyCenterX() + 20));
+      polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() - 20, marco.get(k).getMyCenterX() - 20));
       marco.remove(k);
+      k--;
+    }   
+  }
+  for(int k = 0; k < polo.size(); k++){
+    if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(bob.getMyX()), (float)(bob.getMyY())) < 10){
+      polo.remove(k);
       k--;
     }   
   }
@@ -56,6 +70,9 @@ public void draw()
       }
       bob.hyperspace();
       bob.stopMoving();
+      for(int i = 0; i < 1; i++){
+        marco.add(new Asteroid());
+      }
     }
   }
 }
