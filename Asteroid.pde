@@ -1,21 +1,25 @@
 class Asteroid extends Floater{
   private int rotationSpeed;
   Asteroid(){
-    corners = 6;
+    corners = 8;
     xCorners = new int[corners];   
     yCorners = new int[corners]; 
-    xCorners[0] = -11;
-    yCorners[0] = -8;
-    xCorners[1] = 7;
-    yCorners[1] = -8;
-    xCorners[2] = 13;
-    yCorners[2] = 0;
-    xCorners[3] = 6;
-    yCorners[3] = 10;
-    xCorners[4] = -11;
-    yCorners[4] = 8;
-    xCorners[5] = -5;
-    yCorners[5] = 0;
+    xCorners[0] = (int)(Math.random()*5) - 13;
+    yCorners[0] = (int)(Math.random()*5) - 10;
+    xCorners[1] = (int)(Math.random()*5) - 2;
+    yCorners[1] = (int)(Math.random()*5) - 13;
+    xCorners[2] = (int)(Math.random()*5) + 5;
+    yCorners[2] = (int)(Math.random()*5) - 10;
+    xCorners[3] = (int)(Math.random()*5) + 11;
+    yCorners[3] = (int)(Math.random()*5) - 2;
+    xCorners[4] = (int)(Math.random()*5) + 4;
+    yCorners[4] = (int)(Math.random()*5) + 8;
+    xCorners[5] = (int)(Math.random()*5) - 2;
+    yCorners[5] = (int)(Math.random()*5) + 9;
+    xCorners[6] = (int)(Math.random()*5) - 13;
+    yCorners[6] = (int)(Math.random()*5) + 6;
+    xCorners[7] = (int)(Math.random()*5) - 13;
+    yCorners[7] = (int)(Math.random()*5) - 2;
     myColor = 255;   
     myCenterX = (int)(Math.random()*480) + 10;
     myCenterY = (int)(Math.random()*480) + 10; 
