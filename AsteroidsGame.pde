@@ -3,6 +3,7 @@ Spaceship[] bob = new Spaceship[3];
 Particle[] lines = new Particle[500];
 ArrayList <Asteroid> marco = new ArrayList <Asteroid>();
 ArrayList <SmallAsteroid> polo = new ArrayList <SmallAsteroid>();
+ArrayList <Bullet> shots = new ArrayList <Bullet>();
 
 //your variable declarations here
 public void setup() 
@@ -13,8 +14,8 @@ public void setup()
     starArray[i] = new Star();
   }
   bob[0] = new Spaceship(250, 250);
-  bob[1] = new Spaceship(200, 200);
-  bob[2] = new Spaceship(200, 300);
+  bob[1] = new Spaceship(225, 225);
+  bob[2] = new Spaceship(225, 275);
   for(int i = 0; i < lines.length; i++){
     lines[i] = new Particle();
   }
@@ -45,6 +46,12 @@ public void draw()
     bob[i].show();
     bob[i].move();
   }
+  for(int i = 0; i < shots.size(); i++){
+    if(shots.get(i).getMyX() < 500){
+      shots.get(i).move();
+      shots.get(i).show();
+    }
+  }
   
   //collisions
   for(int i = 0; i < bob.length; i++){
@@ -64,6 +71,20 @@ public void draw()
     }
   }
   
+  for(int i = 0; i < shots.size(); i++){
+    for(int k = 0; k < marco.size(); k++){
+      if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(shots.get(i).getMyX()), (float)(shots.get(i).getMyY())) < 10){
+        marco.remove(k);
+        k--;
+      }   
+    }
+    for(int k = 0; k < polo.size(); k++){
+      if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(shots.get(i).getMyX()), (float)(shots.get(i).getMyY())) < 10){
+        polo.remove(k);
+        k--;
+      }   
+    }
+  }
   //your code here
   if(keyPressed){
     if(key == 'w'){
@@ -80,8 +101,8 @@ public void draw()
         bob[i].stopMoving();
       }
       bob[0].hyperspace();
-      bob[1] = new Spaceship(bob[0].getMyX() - 50, bob[0].getMyY() - 50, bob[0].getPointDirection());
-      bob[2] = new Spaceship(bob[0].getMyX() - 50, bob[0].getMyY() + 50, bob[0].getPointDirection());
+      bob[1] = new Spaceship(bob[0].getMyX() - 25, bob[0].getMyY() - 25, bob[0].getPointDirection());
+      bob[2] = new Spaceship(bob[0].getMyX() - 25, bob[0].getMyY() + 25, bob[0].getPointDirection());
       for(int i = 0; i < 1; i++){
         marco.add(new Asteroid());
       }
@@ -112,6 +133,13 @@ public void keyPressed(){
       bob[i].accelerate(-2);
     }
   }
+}
+  
+  public void keyReleased(){
+    if(key == 's'){
+    shots.add(new Bullet(bob[0]));
+    }
+  }
   //if(keyCode == 'W'){
   ////background(0);
   ////for(int i = 0; i < lines.length; i++){
@@ -125,4 +153,3 @@ public void keyPressed(){
   //if(keyEvent == aChar){
   //  background(240);
   //}
-}
