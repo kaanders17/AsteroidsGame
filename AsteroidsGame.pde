@@ -4,6 +4,7 @@ Particle[] lines = new Particle[500];
 ArrayList <Asteroid> marco = new ArrayList <Asteroid>();
 ArrayList <SmallAsteroid> polo = new ArrayList <SmallAsteroid>();
 ArrayList <Bullet> shots = new ArrayList <Bullet>();
+int score = 0;
 
 //your variable declarations here
 public void setup() 
@@ -53,6 +54,7 @@ public void draw()
     }
   }
   
+  
   //collisions
   for(int i = 0; i < bob.length; i++){
     for(int k = 0; k < marco.size(); k++){
@@ -61,12 +63,14 @@ public void draw()
         polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() - 20, marco.get(k).getMyCenterX() - 20));
         marco.remove(k);
         k--;
+        //score--;
       }   
     }
     for(int k = 0; k < polo.size(); k++){
       if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(bob[i].getMyX()), (float)(bob[i].getMyY())) < 10){
         polo.remove(k);
         k--;
+        //score--;
       }   
     }
   }
@@ -76,12 +80,14 @@ public void draw()
       if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(shots.get(i).getMyX()), (float)(shots.get(i).getMyY())) < 10){
         marco.remove(k);
         k--;
+        score++;
       }   
     }
     for(int k = 0; k < polo.size(); k++){
       if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(shots.get(i).getMyX()), (float)(shots.get(i).getMyY())) < 10){
         polo.remove(k);
         k--;
+        score++;
       }   
     }
   }
@@ -107,6 +113,24 @@ public void draw()
         marco.add(new Asteroid());
       }
     }
+  }
+  fill(255);
+  rect(10, 10, 100, 100);
+  fill(0);
+  textSize(20);
+  textAlign(CENTER);
+  text("Score: " + score, 60, 50);
+  if(score >= 10){
+    score = 100;
+    fill(0);
+    rect(0, 0, 500, 500);
+    fill(255);
+    textSize(20);
+    textAlign(CENTER);
+    text("Gameover! You win!", 250, 200);
+    textSize(15);
+    textAlign(CENTER);
+    text("Refresh to restart", 250, 250);
   }
 }
 
