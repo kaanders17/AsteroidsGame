@@ -37,7 +37,7 @@ class Asteroid extends Floater{
     //yCorners[6] = (int)(Math.random()*5) + 6;
     //xCorners[7] = (int)(Math.random()*5) - 13;
     //yCorners[7] = (int)(Math.random()*5) - 2;
-    myColor = 255;   
+    myColor = 128;   
     myCenterX = (int)(Math.random()*480) + 10;
     myCenterY = (int)(Math.random()*480) + 10; 
     myXspeed = (Math.random()*2); 
@@ -58,7 +58,7 @@ class Asteroid extends Floater{
   }
   public void show ()  //Draws the floater at the current position  
   {
-    fill(0);   
+    fill(128, 128, 128, 255);   
     stroke(myColor);    
     
     //translate the (x,y) center of the ship to the correct position
@@ -100,7 +100,7 @@ class SmallAsteroid extends Asteroid{
     yCorners[3] = (int)(Math.random()*3) + 4;
     xCorners[4] = (int)(Math.random()*3) - 6;
     yCorners[4] = (int)(Math.random()*3) + 3;
-    myColor = 255;   
+    myColor = 128;   
     myCenterX = a;
     myCenterY = b; 
     myXspeed = (Math.random()*2); 
