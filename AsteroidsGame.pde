@@ -115,11 +115,13 @@ public void draw()
     }
   }
   fill(255);
-  rect(10, 10, 100, 100);
+  rect(10, 10, 120, 90, 28);
   fill(0);
+  rect(15, 15, 110, 80, 28);
+  fill(255);
   textSize(20);
   textAlign(CENTER);
-  text("Score: " + score, 60, 50);
+  text("Score: " + score, 70, 50);
   if(score >= 10){
     score = 100;
     fill(0);
