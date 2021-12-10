@@ -59,10 +59,11 @@ public void draw()
   for(int i = 0; i < bob.length; i++){
     for(int k = 0; k < marco.size(); k++){
       if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(bob[i].getMyX()), (float)(bob[i].getMyY())) < 20){
-        polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() + 20, marco.get(k).getMyCenterX() + 20));
-        polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() - 20, marco.get(k).getMyCenterX() - 20));
+        polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() + 25, marco.get(k).getMyCenterX() + 25));
+        polo.add(new SmallAsteroid(marco.get(k).getMyCenterX() - 25, marco.get(k).getMyCenterX() - 25));
         marco.remove(k);
         k--;
+         
         //score--;
       }   
     }
@@ -71,6 +72,7 @@ public void draw()
         polo.remove(k);
         k--;
         //score--;
+        
       }   
     }
   }
@@ -78,6 +80,8 @@ public void draw()
   for(int i = 0; i < shots.size(); i++){
     for(int k = 0; k < marco.size(); k++){
       if(dist((float)(marco.get(k).getMyCenterX()), (float)(marco.get(k).getMyCenterY()), (float)(shots.get(i).getMyX()), (float)(shots.get(i).getMyY())) < 10){
+        fill(255, 255, 0);
+        starExplosion((float)marco.get(k).getMyCenterX(), (float)marco.get(k).getMyCenterY(), 20, 40, 10);
         marco.remove(k);
         k--;
         score++;
@@ -85,6 +89,8 @@ public void draw()
     }
     for(int k = 0; k < polo.size(); k++){
       if(dist((float)(polo.get(k).getMyCenterX()), (float)(polo.get(k).getMyCenterY()), (float)(shots.get(i).getMyX()), (float)(shots.get(i).getMyY())) < 10){
+        fill(255, 255, 0);
+        starExplosion((float)polo.get(k).getMyCenterX(), (float)polo.get(k).getMyCenterY(), 20, 40, 10);
         polo.remove(k);
         k--;
         score++;
@@ -122,7 +128,7 @@ public void draw()
   textSize(20);
   textAlign(CENTER);
   text("Score: " + score, 70, 50);
-  if(score >= 10){
+  if(score >= 20){
     score = 100;
     fill(0);
     rect(0, 0, 500, 500);
@@ -179,3 +185,19 @@ public void keyPressed(){
   //if(keyEvent == aChar){
   //  background(240);
   //}
+  
+  //Explosion
+  void starExplosion(float x, float y, float radius1, float radius2, int npoints) {
+  float angle = TWO_PI / npoints;
+  float halfAngle = angle/2.0;
+  beginShape();
+  for (float a = 0; a < TWO_PI; a += angle) {
+    float sx = x + cos(a) * radius2;
+    float sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a+halfAngle) * radius1;
+    sy = y + sin(a+halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
