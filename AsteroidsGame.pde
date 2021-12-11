@@ -31,21 +31,24 @@ public void draw()
 {
   background(0);
   for(int i = 0; i < marco.size(); i++){
-    (marco.get(i)).show();
     (marco.get(i)).move();
+    (marco.get(i)).show();
+    
   }
   
   for(int i = 0; i < polo.size(); i++){
-    (polo.get(i)).show();
     (polo.get(i)).move();
+    (polo.get(i)).show();
+    
   }
   
   for(int i = 0; i < starArray.length; i++){
     starArray[i].show();
   }
   for(int i = 0; i < bob.length; i++){
-    bob[i].show();
     bob[i].move();
+    bob[i].show();
+    
   }
   for(int i = 0; i < shots.size(); i++){
     if(shots.get(i).getMyX() < 500){
@@ -128,7 +131,7 @@ public void draw()
   textSize(20);
   textAlign(CENTER);
   text("Score: " + score, 70, 50);
-  if(score >= 20){
+  if(score >= 10){
     score = 100;
     fill(0);
     rect(0, 0, 500, 500);
@@ -140,6 +143,24 @@ public void draw()
     textAlign(CENTER);
     text("Refresh to restart", 250, 250);
   }
+  //for(int i = 0; i < shots.size(); i++){
+  //  if(shots.get(i).getMyX() == 500){
+  //    shots.remove(shots.get(i));
+  //    //i--;
+  //  }
+  //  if(shots.get(i).getMyX() == 0){
+  //    shots.remove(shots.get(i));
+  //    //i--;
+  //  }
+  //  if(shots.get(i).getMyY() == 500){
+  //    shots.remove(shots.get(i));
+  //    //i--;
+  //  }
+  //  if(shots.get(i).getMyY() == 0){
+  //    shots.remove(shots.get(i));
+  //    //i--;
+  //  }
+  //}
 }
 
 //char aChar = 'a';
