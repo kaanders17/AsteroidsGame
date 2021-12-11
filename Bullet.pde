@@ -15,7 +15,20 @@ class Bullet extends Floater{
     //change the x and y coordinates by myXspeed and myYspeed       
     myCenterX += myXspeed;    
     myCenterY += myYspeed;     
-
+    
+    if(myCenterX == 500){
+      myCenterX = 1000;
+    }
+    if(myCenterX == 0){
+      myCenterX = -1000;
+    }
+    
+    if(myCenterY == 500){
+      myCenterY = 1000;
+    }
+    if(myCenterY == 0){
+      myCenterY = -1000;
+    }
     //wrap around screen    
     //if(myCenterX >width)
     //{     
